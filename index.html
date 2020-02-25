@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="frame">
+        <div class="titleBar">
+            <h1>Notes</h1>
+            <div class="buttons">
+                <button class="barBtn removeBtn" onclick="notes.removeNote()
+                ">- Remove</button>
+                <button class="barBtn addBtn" onclick="notes.addNote('','','')
+                ">+ Add</button>
+            </div>
+        </div>
+        <div class="content" id="content">
+            <!-- notes will be added here -->
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
