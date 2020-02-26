@@ -14,11 +14,7 @@ class Notes {
     addNote() {
         var length = this.list.length;
         var note = new Note(this.list.length, '', '');
-        this.list[length] = {
-            id: note.id,
-            name: note.name,
-            content: note.content
-        }
+        this.list[length] = note;
         length = this.list.length;
         this.renderNotes();
         this.selectNote(this.list.length-1);
