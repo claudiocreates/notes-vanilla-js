@@ -11,16 +11,6 @@ class Notes {
         this.list = [];
         this.selectedNote;
     }
-    addNote() {
-        var length = this.list.length;
-        var note = new Note(this.list.length, '', '');
-        this.list[length] = note;
-        length = this.list.length;
-        this.renderNotes();
-        this.selectNote(this.list.length-1);
-        this.saveFile();
-        window.location.reload(false)
-    }
     renderNotes(){
         document.getElementById('content').innerHTML='';
         for (let index = this.list.length-1; index >= 0; index--) {
@@ -45,14 +35,15 @@ class Notes {
             </div>`;
         }
     }
-    selectNote(id) {
-        if (id != null) {
-            if (document.querySelector(".noteActive")) {
-                document.querySelector(".noteActive").classList.toggle("noteActive");
-            }
-            document.getElementById("note"+id).classList.toggle("noteActive");
-            this.selectedNote = id;
-        }
+    addNote() {
+        var length = this.list.length;
+        var note = new Note(this.list.length, '', '');
+        this.list[length] = note;
+        length = this.list.length;
+        this.renderNotes();
+        this.selectNote(this.list.length-1);
+        this.saveFile();
+        window.location.reload(false)
     }
     removeNote() {
         if (this.selectedNote === null) {
@@ -69,6 +60,15 @@ class Notes {
             }
         }
         this.saveFile();
+    }
+    selectNote(id) {
+        if (id != null) {
+            if (document.querySelector(".noteActive")) {
+                document.querySelector(".noteActive").classList.toggle("noteActive");
+            }
+            document.getElementById("note"+id).classList.toggle("noteActive");
+            this.selectedNote = id;
+        }
     }
     updateNotes(id) {
         var title = document.getElementById(`title${id}`).value;
