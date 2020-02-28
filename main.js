@@ -21,7 +21,7 @@ class Notes {
                 id="title${index}" 
                 placeholder="Note Title"
                 onkeyup="notes.updateNotes(${index})" 
-                onfocus="notes.selectNote(${index})"
+                onfocus="notes.selectNote(${index}, 'title')"
                 value="${this.list[index].name}">
                 </input>
                 <textarea name="" 
@@ -29,7 +29,7 @@ class Notes {
                 id="content${index}" 
                 placeholder="Note Content" 
                 onkeyup="notes.updateNotes(${index})" 
-                onfocus="notes.selectNote(${index})"
+                onfocus="notes.selectNote(${index}, 'content')"
                 >${this.list[index].content}</textarea>
             </div>`;
         }
@@ -40,7 +40,7 @@ class Notes {
         this.list[length] = note;
         length = this.list.length;
         this.renderNotes();
-        this.selectNote(this.list.length-1);
+        this.selectNote(this.list.length-1, 'title');
         this.saveFile();
         document.getElementById(`title${this.list.length-1}`).focus();
     }
@@ -51,23 +51,32 @@ class Notes {
             this.list.splice(this.selectedNote, 1);
             this.renderNotes();
             if (this.selectedNote > 0) {
-                this.selectNote(this.selectedNote-1);
+                this.selectNote(this.selectedNote-1, 'title');
             } else if (this.selectedNote == 0 && this.list.length >= 1){
-                this.selectNote(this.selectedNote);
+                this.selectNote(this.selectedNote, 'title');
             } else {
                 this.selectNote(this.selectedNote = null);
             }
         }
         this.saveFile();
     }
-    selectNote(id) {
+    selectNote(id, type) {
         if (id != null) {
             if (document.querySelector(".noteActive")) {
                 document.querySelector(".noteActive").classList.toggle("noteActive");
             }
             document.getElementById("note"+id).classList.toggle("noteActive");
             this.selectedNote = id;
-            document.getElementById(`title${id}`).focus();
+            switch (type) {
+                case 'title':
+                    document.getElementById(`title${id}`).focus();
+                    break;
+                case 'content':
+                    document.getElementById(`content${id}`).focus();
+                    break;
+                case null:
+                    break;
+            }
         }
     }
     updateNotes(id) {
