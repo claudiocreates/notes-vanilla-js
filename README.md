@@ -1,2 +1,2 @@
-# notes vanilla js
+# Notetaking 'App' - Made with Vanilla JS
  A simple (and open source) vanilla js note taking app/template.
