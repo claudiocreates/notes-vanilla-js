@@ -20,7 +20,6 @@ class Notes {
                 class="noteTitle" 
                 id="title${index}" 
                 placeholder="Note Title"
-                autofocus
                 onkeyup="notes.updateNotes(${index})" 
                 onfocus="notes.selectNote(${index})"
                 value="${this.list[index].name}">
@@ -43,7 +42,7 @@ class Notes {
         this.renderNotes();
         this.selectNote(this.list.length-1);
         this.saveFile();
-        window.location.reload(false)
+        document.getElementById(`title${this.list.length-1}`).focus();
     }
     removeNote() {
         if (this.selectedNote === null) {
@@ -68,6 +67,7 @@ class Notes {
             }
             document.getElementById("note"+id).classList.toggle("noteActive");
             this.selectedNote = id;
+            document.getElementById(`title${id}`).focus();
         }
     }
     updateNotes(id) {
